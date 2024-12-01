@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerar Fatura</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .productRow {
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        #invoicePreview {
+            display: none;
+            margin-top: 30px;
+            border: 1px solid #ddd;
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Formulário de Fatura</h1>
+
+    <form id="invoiceForm">
+        <label>Nome da Empresa:</label>
+        <input type="text" id="companyName" required><br><br>
+
+        <label>Endereço da Empresa:</label>
+        <input type="text" id="companyAddress" required><br><br>
+
+        <label>Nome do Cliente:</label>
+        <input type="text" id="clientName" required><br><br>
+
+        <label>Telefone do Cliente:</label>
+        <input type="tel" id="clientPhone" required placeholder="(xx) xxxx-xxxx"><br><br>
+
+        <div id="products">
+            <div class="productRow">
+                <label>Produto:</label>
+                <input type="text" class="productName" placeholder="Descrição do produto" required>
+
+                <label>Quantidade:</label>
+                <input type="number" class="productQuantity" min="1" required>
+
+                <label>Valor:</label>
+                <input type="text" class="productPrice" placeholder="R$ 0,00" required>
+            </div>
+        </div>
+        <button type="button" id="addProduct">Adicionar Produto</button><br><br>
+
+        <label>Desconto (R$):</label>
+        <input type="text" id="discount" placeholder="R$ 0,00"><br><br>
+
+        <button type="button" id="generateInvoice">Gerar Fatura</button>
+    </form>
+
+    <div id="invoicePreview">
+        <h2>Fatura</h2>
+        <p><strong>Empresa:</strong> <span id="previewCompanyName"></span></p>
+        <p><strong>Endereço:</strong> <span id="previewCompanyAddress"></span></p>
+        <p><strong>Cliente:</strong> <span id="previewClientName"></span></p>
+        <p><strong>Telefone:</strong> <span id="previewClientPhone"></span></p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th>Quantidade</th>
+                    <th>Valor Unitário</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody id="invoiceProducts"></tbody>
+        </table>
+
+        <p><strong>Desconto:</strong> <span id="previewDiscount"></span></p>
+        <p><strong>Total:</strong> <span id="previewTotal"></span></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
