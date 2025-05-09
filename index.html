@@ -9,62 +9,63 @@
 <body>
     <header>
         <h1>EMITIR FATURA</h1>
-        <p>Este serviço é utilizado para gerar uma fatura em formato de imagem para o cliente, com todos os valores especificado, porém <strong>NÃO POSSUÍ</strong> valor fiscal. Preencha as informações abaixo:</p>
+        <p>Preencha as informações abaixo para gerar uma fatura visualizável e pronta para download.</p>
     </header>
     <main>
         <h2>Informações da Empresa</h2>
-
-        <label for="empresa">Nome:</label>
-        <input type="text" id="empresa">
-
-        <label for="endereço">Endereço:</label>
-        <input type="text" id="endereço">
-
+        <div class="bloco2">
+            <div class="bloco">
+                <label for="empresa">Nome:</label>
+                <input type="text" id="empresa" placeholder="Ex: Empresa ABC">
+            </div>
+            <div class="bloco">
+                <label for="endereco">Endereço:</label>
+                <input type="text" id="endereco" placeholder="Ex: Rua Principal, 123">
+            </div>
+        </div>
         <hr>
-
         <h2>Informações do Cliente</h2>
+        <div>
+            <label for="cliente">Nome do Cliente:</label>
+            <input type="text" id="cliente" placeholder="Ex: Roberto">
 
-        <label for="cliente">Nome do Cliente:</label>
-        <input type="text" id="cliente" placeholder="Ex: Roberto">
-
-        <label for="telefone">Telefone</label>
-        <input type="text" name="telefone" id="telefone">
-
+            <label for="telefone">Telefone:</label>
+            <input type="text" id="telefone" placeholder="Ex: (11) 91234-5678">
+        </div>
         <hr>
-
         <h2>Serviços e/ou Produtos</h2>
-        
-        <label for="produto">Nome:</label>
-        <label for="valor">Valor:</label>
-
-        <input type="text" id="produto">
-        <input type="number" id="valor">
-
-        <button id="adicionar_produto">Adicionar Produto</button>
-
-        <table style="border-width: 1px; border-color: black;">
-            <tr>
-                <th class="cabeçalho">Nome</th>
-                <th class="cabeçalho">Valor</th>
-                <th class="cabeçalho">Remover</th>
-            </tr>
-            <tr>
-                <th>Nenhum produto adicionado</th>
-                <th>R$ 00,00</th>
-                <th><span class="remover">✖</span></th>
-            </tr>
+        <div class="produto-form">
+            <label for="produto">Nome:</label>
+            <input type="text" id="produto" placeholder="Ex: Serviço X">
+            <label for="valor">Valor:</label>
+            <input type="number" id="valor" placeholder="Ex: 100">
+            <button id="adicionar_produto">Adicionar Produto</button>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Valor</th>
+                    <th>Remover</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Produtos adicionados aparecerão aqui -->
+            </tbody>
         </table>
-
         <button id="visualizar_fatura">Visualizar Fatura</button>
-
-        <hr>
-
-        <footer>
-            <img src="assets/logo.png" alt="">
-            <a href="https://www.instagram.com/rafael.lopes.pacheco/" target="_blank">Instagram</a>
-            <a href="https://github.com/rafaellopespacheco" target="_blank">GitHub</a>
-            <p>©️ 2024 Rafael Lopes. Todos os direitos reservados</p>
-        </footer>
     </main>
+    <div id="popup" class="hidden popup">
+        <div id="fatura-content">
+            <!-- Fatura renderizada -->
+        </div>
+        <button id="baixar_fatura">Baixar Fatura</button>
+        <button id="fechar_popup">Fechar</button>
+    </div>
+    <footer>
+        <p>©️ 2024 Rafael Lopes. Todos os direitos reservados.</p>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
